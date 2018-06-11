@@ -1,6 +1,6 @@
 #include "helper-functions.hpp"
 #pragma once
-
+using namespace std;			//temporarily
 class big_number 
 {
 private:
@@ -34,6 +34,8 @@ public:
 	big_number operator+ (big_number const & big_num);
 	
 	big_number operator- (big_number  const& big_num);
+
+	friend ostream& operator<<(ostream &output, big_number const& big_num);
 
 	void printit ()
 	{
@@ -134,4 +136,15 @@ big_number big_number::operator- ( big_number const&big_num)
 	}
 	std::reverse(temp.begin(),temp.end());
 	return big_number(temp);
+}
+
+ostream &operator<<(ostream &output,big_number const &big_num)
+{	
+	std::string toreturn;
+	for(int i = big_num.number.size()-1 ;i>=0; i--)		
+	{
+		toreturn.push_back(big_num.number[i]+'0');
+	}
+
+	return output <<  toreturn; 
 }
