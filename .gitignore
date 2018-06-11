@@ -1,0 +1,6 @@
+#files to ignore #
+#############
+.*.*.swp
+test.cpp
+*.out
+functions-draft2.hpp
