@@ -20,8 +20,14 @@ public:
 		{
 			sign = big_num[0];
 		}
-				
-	
+		for (int i = checkiszero(big_num);i<big_num.size();i++)
+		{
+			if (indicateSign(big_num[i]))
+			{
+				continue;
+			}
+			number.push_back(big_num[i]-'0');
+		}
 	}
 
 	big_number operator+ (big_number const & big_num);
