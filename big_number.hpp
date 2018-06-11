@@ -37,7 +37,7 @@ public:
 
 	void printit ()
 	{
-		for(int i = number.size() ;i>=0; i--)				//for (char ch : number) { }  doesnt work
+		for(int i = number.size()-1 ;i>=0; i--)				//for (char ch : number) { }  doesnt work
 		{
 			std::cout << static_cast<unsigned short>(number[i]);
 		}
@@ -132,5 +132,6 @@ big_number big_number::operator- ( big_number const&big_num)
 		temp.push_back(bigger[i]+'0');
 		i++;
 	}
+	std::reverse(temp.begin(),temp.end());
 	return big_number(temp);
 }

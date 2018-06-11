@@ -20,7 +20,7 @@ int main()
 
 	std::cout<<"sum is : ";	big.printit();
 
-	//big_number lcc = bc - cc;
+	big_number lcc = bc - cc;
 	
-	//std::cout<<"\n\nDifference is : ";lcc.printit();
+	std::cout<<"\n\nDifference is : ";lcc.printit();
 }
