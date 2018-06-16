@@ -1,15 +1,18 @@
-#include<iostream>
-#include<string>
+
+
 #pragma once
 
+#include<iostream>
+#include<string>
+
 void strprint(std::string const & str);
-bool permittedCharacters (char ch);
-bool indicateSign(char ch);
-int checkiszero(std::string const &);
+bool is_allowed_char (char ch);
+bool is_sign(char ch);
+int skip_zeroes(std::string const &);
 
 bool is_valid_number(std::string const &str)
 {
-	if ( str.empty() || not permittedCharacters(str[0]))
+	if ( str.empty() || not is_allowed_char(str[0]) )
 	{
 		return false;
 	}
@@ -23,11 +26,11 @@ bool is_valid_number(std::string const &str)
 	return true;
 }
 
-bool permittedCharacters (char ch)
+bool is_allowed_char(char ch)
 {
 	return std::isdigit(ch) or ch == '+' or ch == '-';
 }
-bool indicateSign(char ch)
+bool is_sign(char ch)
 {
 	return (ch == '+' || ch =='-');
 }
@@ -38,21 +41,20 @@ void strprint(std::string const & str)
 		std::cout<<static_cast<unsigned short>(ch);
 	}
 }
-int checkiszero(std::string const &str)
+int skip_zeroes(std::string const &str)
 {
-	for(int i=0 ;i< str.size();i++)
-	{
-		if ( indicateSign(str[i]))
-		{
-			continue;
-		}
-		if (not(str[i]-'0' == 0))
-		{
-			return i;
-		}	
-	}
+	// for(int i = is_sign(str[0]); i< str.size() ; i++)
+	// {
+	// 	if ( str[i] != '0')
+	// 	{
+	// 		return i;
+	// 	}	
+	// }
+	// return str.size() - 1;
 
-	return str.size()-1;
+	int i = is_sign(str[0]);
+	while(i < str.size() && str[i++] == '0');
+	return i - 1;
 }
 
 bool  strcompare(std::string const &str1, std::string const &str2)

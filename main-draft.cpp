@@ -1,5 +1,8 @@
+
+
 #include <iostream>
 #include "big_number.hpp"
+
 int main()
 {
 	std::string s;
@@ -8,19 +11,19 @@ int main()
 	
 	std::cin >> s;
 
-	big_number bc(s);
+	big_number const bc(s);
 
 	std::cout << "enter any number @CC:: ";
 
 	std::cin >> s;
 	
-	big_number cc(s);
+	big_number const cc(s);
 
-	big_number big = bc+cc;
+	big_number const big = bc + cc;
 
-	std::cout<<"sum is : ";	big.printit();
-
-	big_number lcc = bc - cc;
+	std::cout << "Sum of two numbers is ::" << big;
 	
-	std::cout<<"\n\nDifference is : ";lcc.printit();
+	big_number const lcc = bc - cc;
+	
+	std::cout << "\n\nDifference is :" << lcc;
 }

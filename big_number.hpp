@@ -1,31 +1,32 @@
-#include "helper-functions.hpp"
+
+
 #pragma once
+
+#include "helper-functions.hpp"
 
 class big_number 
 {
+
 private:
+
 	char sign = '+';
 	std::string number;
 
 public:
 
-	big_number(std::string big_num)				// paramterised constructor
+	big_number(std::string const & big_num)				// paramterised constructor
 	{
 		if ( not is_valid_number(big_num)) 
 		{
 			throw std::invalid_argument("not a valid number");
 		}
 		
-		if ( indicateSign(big_num[0]))					//indicateSign() returns true, if it finds + OR - symbol at the begining of string 
+		if ( is_sign(big_num[0]))					//is_sign() returns true, if it finds + OR - symbol at the begining of string 
 		{
 			sign = big_num[0];
 		}
-		for (int i = checkiszero(big_num);i<big_num.size();i++)
+		for (int i = skip_zeroes(big_num); i < big_num.size() ; i++)
 		{
-			if (indicateSign(big_num[i]))
-			{
-				continue;
-			}
 			number.push_back(big_num[i]-'0');
 		}
 		std::reverse(number.begin(),number.end());
@@ -33,9 +34,9 @@ public:
 
 	big_number operator+ (big_number const & big_num);
 	
-	big_number operator- (big_number  const& big_num);
+	big_number operator- (big_number const & big_num);
 
-	friend std::ostream& operator<<(std::ostream &output, big_number const& big_num);
+	friend std::ostream& operator<<(std::ostream &output, big_number const & big_num);
 
 	void printit ()
 	{
@@ -49,28 +50,23 @@ public:
 big_number big_number::operator+ ( big_number const & big_num)
 {
 	std::string temp;
-	auto bigger = number;
-	auto smaller = big_num.number;
 	
-	if (bigger.size() < smaller.size())
-	{
-		bigger= big_num.number;
-		smaller = number;
-	}
+	auto const & bigger  = number.size() > big_num.number.size() ? number : big_num;
+	auto const & smaller = number.size() <= big_num.number.size() ? number : big_num;
 
 	int hasil=0;
  	int i =0;	
 	while(i < smaller.size())
 	{
-		int sum = bigger[i]+smaller[i]+hasil;
+		int sum = bigger[i] + smaller[i] + hasil;
 		temp.push_back(sum%10+'0');
 		hasil = sum /10;
 		i++;
 	}
 	while (i< bigger.size())
 	{
-		int sum = bigger[i]+hasil;
-		temp.push_back(sum%10+'0');
+		int sum = bigger[i] + hasil;
+		temp.push_back(sum%10 + '0');
 		hasil = sum/10;
 		i++;
 	}
@@ -82,7 +78,7 @@ big_number big_number::operator+ ( big_number const & big_num)
 	return big_number(temp);
 }
 
-big_number big_number::operator- ( big_number const&big_num)
+big_number big_number::operator- ( big_number const & big_num)
 {
 	std::string temp;
 	std::string bigger; 
@@ -146,5 +142,5 @@ std::ostream &operator<<(std::ostream &output,big_number const &big_num)
 		toreturn.push_back(big_num.number[i]+'0');
 	}
 
-	return output <<  toreturn; 
+	return <<  toreturn; 
 }
