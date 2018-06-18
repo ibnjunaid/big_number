@@ -11,15 +11,15 @@ int main()
 	
 	std::cin >> s;
 
-	big_number const bc(s);
+	big_number  bc(s);
 
 	std::cout << "enter any number @CC:: ";
 
 	std::cin >> s;
 	
-	big_number const cc(s);
+	big_number  cc(s);
 
-	big_number const big = bc + cc;
+	const big_number big = bc + cc;
 
 	std::cout << "Sum of two numbers is ::" << big;
 	

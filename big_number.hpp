@@ -38,21 +38,14 @@ public:
 
 	friend std::ostream& operator<<(std::ostream &output, big_number const & big_num);
 
-	void printit ()
-	{
-		for(int i = number.size()-1 ;i>=0; i--)				//for (char ch : number) { }  doesnt work
-		{
-			std::cout << static_cast<unsigned short>(number[i]);
-		}
-	}
 };
 
 big_number big_number::operator+ ( big_number const & big_num)
 {
 	std::string temp;
 	
-	auto const & bigger  = number.size() > big_num.number.size() ? number : big_num;
-	auto const & smaller = number.size() <= big_num.number.size() ? number : big_num;
+	auto const & bigger  = number.size() > big_num.number.size() ? number : big_num.number;
+	auto const & smaller = number.size() <= big_num.number.size() ? number : big_num.number;
 
 	int hasil=0;
  	int i =0;	
@@ -140,7 +133,8 @@ std::ostream &operator<<(std::ostream &output,big_number const &big_num)
 	for(int i = big_num.number.size()-1 ;i>=0; i--)		
 	{
 		toreturn.push_back(big_num.number[i]+'0');
+		//output << big_num.number[i] + '0';
 	}
 
-	return <<  toreturn; 
+	return  output << toreturn; 
 }
