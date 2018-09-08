@@ -1,10 +1,10 @@
 all:compile run
 
 compile:
-	@g++ -std=c++17 main-draft.cpp -o run.out
+	@g++ -std=c++17 ./src/main-draft.cpp -o run.out
 
 run:
-	@run.out
+	@./src/run.out
 
 
 

@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include "big_number.hpp"
 
@@ -19,9 +18,9 @@ int main()
 	
 	big_number  cc(s);
 
-	const big_number big = bc + cc;
-
-	std::cout << "Sum of two numbers is ::" << big;
+	//const big_number big = bc + cc;
+//
+	//std::cout << "Sum of two numbers is ::" << big;
 	
 	big_number const lcc = bc - cc;
 	
